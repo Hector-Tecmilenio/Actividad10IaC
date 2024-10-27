@@ -1,0 +1,139 @@
+- hosts: Ubuntu
+  become: yes
+  tasks:
+    - name: Update apt repo and cache
+      apt:
+        update_cache: yes
+
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+
+    - name: Ensure Apache is started and enabled
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+    
+    - name: Allow HTTP traffic through the firewall
+      ufw:
+        rule: allow
+        port: '80'
+        proto: tcp
+    
+    -name: Deploy a sports info HTML page 
+      copy:
+        content: |
+           <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campeonatos de la Liga MX</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #c8102e;
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #ffffff;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <h1>Campeonatos de la Liga MX</h1>
+    <ul>
+        <li>
+            Apertura 2024
+            <img src="https://i.pinimg.com/originals/b8/5b/a8/b85ba80ebe69a2d03c4ebc216a8d2f8a.jpg" alt="Campeón Apertura 2024">
+        </li>
+        <li>
+            Clausura 2024
+            <img src="https://i.pinimg.com/originals/b8/5b/a8/b85ba80ebe69a2d03c4ebc216a8d2f8a.jpg" alt="Campeón Clausura 2024">
+        </li>
+        <li>
+            Apertura 2023
+            <img src="https://th.bing.com/th/id/OIP.JD_LG222Jp1IhI5OEMII-AHaHa?rs=1&pid=ImgDetMain" alt="Campeón Apertura 2023">
+        </li>
+        <li>
+            Clausura 2023
+            <img src="https://th.bing.com/th/id/OIP.JD_LG222Jp1IhI5OEMII-AHaHa?rs=1&pid=ImgDetMain" alt="Campeón Clausura 2023">
+        </li>
+        <li>
+            Apertura 2022
+            <img src="https://th.bing.com/th/id/R.73b643659db61db3f4269fbb0ff05873?rik=4pt5TJWjntIF0Q&pid=ImgRaw&r=0" alt="Campeón Apertura 2022">
+        </li>
+        <li>
+            Clausura 2022
+            <img src="https://th.bing.com/th/id/R.312bc4a386b3007adce24ef9b788671a?rik=1mIVAY5y4SKyLA&pid=ImgRaw&r=0" alt="Campeón Clausura 2022">
+        </li>
+        <li>
+            Apertura 2021
+            <img src="https://th.bing.com/th/id/OIP.AidrrUwGvE6Ek5rU9MShigHaEI?rs=1&pid=ImgDetMain" alt="Campeón Apertura 2021">
+        </li>
+        <li>
+            Clausura 2021
+            <img src="https://th.bing.com/th/id/OIP.hNK3RN_8Jn50R1AP5BwS0QHaE7?rs=1&pid=ImgDetMain" alt="Campeón Clausura 2021">
+        </li>
+        <li>
+            Apertura 2020
+            <img src="https://th.bing.com/th/id/R.79ad1e20a2daa25224c67e157690ae4e?rik=xL%2fnkVVL14AH2g&riu=http%3a%2f%2fimages.performgroup.com%2fdi%2flibrary%2fGOAL%2f2%2fed%2ftijuana-escudo-badge-hd_2rzxo5axglj710evquxj3wdyu.jpg%3ft%3d-1947205677&ehk=8H1bi9ivhCkzm5BTpEJMFwmH8A9dEMCRN64oATTwaT0%3d&risl=&pid=ImgRaw&r=0" alt="Campeón Apertura 2020">
+        </li>
+        <li>
+            Clausura 2020
+            <img src="https://th.bing.com/th/id/OIP.JD_LG222Jp1IhI5OEMII-AHaHa?rs=1&pid=ImgDetMain" alt="Campeón Clausura 2020">
+        </li>
+        <li>
+            Apertura 2019
+            <img src="https://th.bing.com/th/id/R.5b60482362a5fc2f30c864696a3b9132?rik=NreHGyY65Aporg&pid=ImgRaw&r=0" alt="Campeón Apertura 2019">
+        </li>
+        <li>
+            Clausura 2019
+            <img src="https://th.bing.com/th/id/R.c31a8d0480063cbca93c4e5288c2c1d9?rik=iR9Kv6ccn53DeA&pid=ImgRaw&r=0" alt="Campeón Clausura 2019">
+        </li>
+        <li>
+            Apertura 2018
+            <img src="https://th.bing.com/th/id/R.c31a8d0480063cbca93c4e5288c2c1d9?rik=iR9Kv6ccn53DeA&pid=ImgRaw&r=0" alt="Campeón Apertura 2018">
+        </li>
+        <li>
+            Clausura 2018
+            <img src="https://wallpapercave.com/wp/wp3640379.jpg" alt="Campeón Clausura 2018">
+        </li>
+    </ul>
+    <footer>
+        <p>Datos de campeonatos de la Liga MX actualizados hasta 2024</p>
+    </footer>
+</body>
+</html>
+    -name: Ensure UFW is enabled
+
+    
+
+

@@ -1,0 +1,13 @@
+[ubuntu]
+ubuntu001 ansible_host=0.0.0.0 ansible_user=ubuntu ansible_ssh_private_key_file="C:/Users/hecto/.ssh/id_rsa"
+
+[Windows]
+Windows001 ansible_host=0.0.0.0 ansible_user=Administrator ansible_ssh_private_key_file="C:/Users/hecto/.ssh/id_rsa"
+
+[Windows]
+ansible_user=
+ansible_password=
+ansible_connection=winrm
+ansible_winrm_transport=basic
+ansible_port=5985
+ansible_winrm_server_cert_validation=ignore
